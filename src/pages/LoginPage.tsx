@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import { Eye, EyeOff, Loader } from "lucide-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [username] = useState("HAZ•••••••");
+  const [username] = useState("PRI•••••••••••••••");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -42,11 +41,11 @@ const LoginPage = () => {
         className="w-64 mb-12" 
       />
       
-      <div className="w-24 h-24 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-3xl font-semibold mb-4">
-        JM
+      <div className="w-[5.5rem] h-[5.5rem] rounded-full bg-unionbank-orange flex items-center justify-center text-white text-2xl font-semibold mb-4">
+        PR
       </div>
       
-      <div className="text-unionbank-gray text-lg mb-8">{username}</div>
+      <div className="text-unionbank-gray text-base mb-8">{username}</div>
       
       <form onSubmit={handleLogin} className="w-full max-w-md">
         <div className="relative mb-6">
