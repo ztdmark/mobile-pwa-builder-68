@@ -36,7 +36,11 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-white px-6 py-10">
-      <img src="/lovable-uploads/09912f0f-39b3-4704-9285-257b332724f5.png" alt="Union Bank" className="w-40 mb-12" />
+      <img 
+        src="/lovable-uploads/046025eb-c8f8-4a33-9bb1-0b655f1d2e19.png" 
+        alt="Union Bank" 
+        className="w-64 mb-12" 
+      />
       
       <div className="w-24 h-24 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-3xl font-semibold mb-4">
         PI
