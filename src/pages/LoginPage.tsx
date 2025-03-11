@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "../contexts/AuthContext";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader } from "lucide-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [username] = useState("PRI••••••••");
+  const [username] = useState("HAZ•••••••");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const LoginPage = () => {
       />
       
       <div className="w-24 h-24 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-3xl font-semibold mb-4">
-        PI
+        JM
       </div>
       
       <div className="text-unionbank-gray text-lg mb-8">{username}</div>
@@ -55,7 +55,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full h-14 text-lg border-unionbank-gray/30 focus:border-unionbank-orange"
+            className="w-full h-14 text-lg border-unionbank-gray/30 focus:border-unionbank-orange rounded-full"
           />
           <button 
             type="button"
@@ -71,26 +71,36 @@ const LoginPage = () => {
           disabled={isLoading}
           className="w-full h-14 bg-unionbank-orange hover:bg-unionbank-orange/90 text-white text-xl font-medium rounded-full"
         >
-          LOG IN
+          {isLoading ? (
+            <Loader className="h-6 w-6 animate-spin" />
+          ) : (
+            'LOG IN'
+          )}
         </Button>
       </form>
       
-      <div className="flex justify-between w-full max-w-md mt-6 text-unionbank-gray">
+      <div className="mt-6 text-unionbank-gray">
         <a href="#" className="text-sm">Forgot my User ID or Password</a>
-        <span className="text-unionbank-gray">|</span>
-        <a href="#" className="text-sm">Unblock my profile</a>
       </div>
       
-      <div className="mt-8 text-unionbank-gray">
+      <div className="mt-8 text-unionbank-gray text-sm">
         Scroll up for more options
       </div>
       
-      <div className="w-full max-w-md mt-6">
+      <div className="w-full max-w-md mt-6 space-y-4">
         <Button 
           variant="outline"
           className="w-full h-14 border-unionbank-gray/30 text-black justify-between items-center px-6 rounded-lg"
         >
           <span>Generate OTP</span>
+          <span className="text-unionbank-orange">›</span>
+        </Button>
+        
+        <Button 
+          variant="outline"
+          className="w-full h-14 border-unionbank-gray/30 text-black justify-between items-center px-6 rounded-lg"
+        >
+          <span>ATM & Branch Locator</span>
           <span className="text-unionbank-orange">›</span>
         </Button>
       </div>

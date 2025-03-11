@@ -14,7 +14,7 @@ const LoadingPage = () => {
       } else {
         navigate("/login");
       }
-    }, 1500);
+    }, 4000); // Changed to 4 seconds
 
     return () => clearTimeout(timer);
   }, [isAuthenticated, navigate]);
