@@ -14,18 +14,21 @@ const LoadingPage = () => {
       } else {
         navigate("/login");
       }
-    }, 4000); // Changed to 4 seconds
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <img 
-        src="/lovable-uploads/046025eb-c8f8-4a33-9bb1-0b655f1d2e19.png" 
-        alt="Union Bank" 
-        className="w-64 mb-8" 
-      />
+      <div className="max-w-[160px] mb-8">
+        <img 
+          src="/lovable-uploads/3a9c61a0-d575-47f7-b413-c964b4a6e931.png" 
+          alt="Union Bank" 
+          className="w-full"
+        />
+      </div>
+      <h1 className="text-2xl text-gray-800 font-medium mt-8">Union Bank Mobile</h1>
     </div>
   );
 };

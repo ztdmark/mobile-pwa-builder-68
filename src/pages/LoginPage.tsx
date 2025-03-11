@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -18,13 +19,15 @@ const LoginPage = () => {
     setIsLoading(true);
     
     try {
-      const success = await login(username, password);
-      if (success) {
-        navigate("/dashboard");
-      }
+      // Simulate login delay
+      setTimeout(async () => {
+        const success = await login(username, password);
+        if (success) {
+          navigate("/dashboard");
+        }
+      }, 2000);
     } catch (error) {
       console.error("Login error:", error);
-    } finally {
       setIsLoading(false);
     }
   };
@@ -35,17 +38,19 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-white px-6 py-10">
-      <img 
-        src="/lovable-uploads/046025eb-c8f8-4a33-9bb1-0b655f1d2e19.png" 
-        alt="Union Bank" 
-        className="w-64 mb-12" 
-      />
+      <div className="w-full max-w-md flex justify-center mb-10">
+        <img 
+          src="/lovable-uploads/9c04d07b-cc81-4eb3-bdb0-7dfc68f894ed.png" 
+          alt="Union Bank" 
+          className="h-10" 
+        />
+      </div>
       
-      <div className="w-[5.5rem] h-[5.5rem] rounded-full bg-unionbank-orange flex items-center justify-center text-white text-2xl font-semibold mb-4">
+      <div className="w-20 h-10 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-xl font-semibold mb-4">
         PR
       </div>
       
-      <div className="text-unionbank-gray text-base mb-8">{username}</div>
+      <div className="text-gray-500 text-sm mb-6">{username}</div>
       
       <form onSubmit={handleLogin} className="w-full max-w-md">
         <div className="relative mb-6">
@@ -54,12 +59,12 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full h-14 text-lg border-unionbank-gray/30 focus:border-unionbank-orange rounded-full"
+            className="w-full h-12 text-base border-gray-300 focus:border-unionbank-orange rounded-full px-4"
           />
           <button 
             type="button"
             onClick={togglePasswordVisibility} 
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
           >
             {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
           </button>
@@ -68,28 +73,28 @@ const LoginPage = () => {
         <Button 
           type="submit" 
           disabled={isLoading}
-          className="w-full h-14 bg-unionbank-orange hover:bg-unionbank-orange/90 text-white text-xl font-medium rounded-full"
+          className="w-full h-12 bg-unionbank-orange hover:bg-unionbank-orange/90 text-white text-lg font-medium rounded-full"
         >
           {isLoading ? (
-            <Loader className="h-6 w-6 animate-spin" />
+            <Loader className="h-5 w-5 animate-spin" />
           ) : (
             'LOG IN'
           )}
         </Button>
       </form>
       
-      <div className="mt-6 text-unionbank-gray">
+      <div className="mt-6 text-gray-500">
         <a href="#" className="text-sm">Forgot my User ID or Password</a>
       </div>
       
-      <div className="mt-8 text-unionbank-gray text-sm">
+      <div className="mt-8 text-gray-400 text-sm">
         Scroll up for more options
       </div>
       
-      <div className="w-full max-w-md mt-6 space-y-4">
+      <div className="w-full max-w-md mt-6">
         <Button 
           variant="outline"
-          className="w-full h-14 border-unionbank-gray/30 text-black justify-between items-center px-6 rounded-lg"
+          className="w-full h-12 border-gray-300 text-black justify-between items-center px-6 rounded-lg mb-4"
         >
           <span>Generate OTP</span>
           <span className="text-unionbank-orange">›</span>
@@ -97,7 +102,7 @@ const LoginPage = () => {
         
         <Button 
           variant="outline"
-          className="w-full h-14 border-unionbank-gray/30 text-black justify-between items-center px-6 rounded-lg"
+          className="w-full h-12 border-gray-300 text-black justify-between items-center px-6 rounded-lg"
         >
           <span>ATM & Branch Locator</span>
           <span className="text-unionbank-orange">›</span>

@@ -6,16 +6,18 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#F97316",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "/logo192.png",
+      "src": "/lovable-uploads/3a9c61a0-d575-47f7-b413-c964b4a6e931.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/logo512.png",
+      "src": "/lovable-uploads/3a9c61a0-d575-47f7-b413-c964b4a6e931.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "splash_pages": null
 }
