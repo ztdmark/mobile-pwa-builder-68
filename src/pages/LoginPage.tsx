@@ -40,7 +40,7 @@ const LoginPage = () => {
     <div className="flex flex-col items-center min-h-screen bg-white px-6 py-10">
       <div className="w-full max-w-md flex justify-center mb-10">
         <img 
-          src="/lovable-uploads/9c04d07b-cc81-4eb3-bdb0-7dfc68f894ed.png" 
+          src="/ub.png" 
           alt="Union Bank" 
           className="h-10" 
         />
