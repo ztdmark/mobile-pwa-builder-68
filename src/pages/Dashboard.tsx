@@ -68,7 +68,7 @@ const Dashboard = () => {
 
         <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative">
           <div className="flex justify-between items-center mb-1">
-            <h3 className={`${isMobile ? 'text-[calc(1rem*0.82)]' : 'text-[calc(1.25rem*0.98)]'} font-bold uppercase text-white/88`}>PRINCE IVANN BODO COMISO</h3>
+            <h3 className={`${isMobile ? 'text-[calc(1rem*0.84)]' : 'text-xl'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
           </div>
           <div className="text-sm mb-10">Classic Savings ePaycard ****0499</div>
