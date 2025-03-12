@@ -21,14 +21,12 @@ const LoadingPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      <div className="max-w-[160px] mb-8">
-        <img 
-          src="/lovable-uploads/3a9c61a0-d575-47f7-b413-c964b4a6e931.png" 
-          alt="Union Bank" 
-          className="w-full"
-        />
-      </div>
-      <h1 className="text-2xl text-gray-800 font-medium mt-8">Union Bank Mobile</h1>
+      <img 
+        src="/lovable-uploads/9c04d07b-cc81-4eb3-bdb0-7dfc68f894ed.png" 
+        alt="Union Bank" 
+        className="h-10 mb-8"
+      />
+      <h1 className="text-2xl text-gray-800 font-medium mt-4">Union Bank Mobile</h1>
     </div>
   );
 };

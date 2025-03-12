@@ -25,7 +25,7 @@ const Dashboard = () => {
       {/* Header */}
       <header className="bg-white p-4 border-b border-gray-200 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-unionbank-orange flex items-center justify-center text-white text-xl font-bold rounded-lg">
+          <div className="w-12 h-12 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-xl font-bold">
             PC
           </div>
           <div className="text-xl font-semibold">Dashboard</div>
@@ -70,27 +70,27 @@ const Dashboard = () => {
 
         {/* Banking Services Grid */}
         <div className="bg-white rounded-xl p-4 shadow-sm mb-16">
-          <div className="grid grid-cols-4 gap-4 mb-4">
+          <div className="grid grid-cols-4 gap-2">
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
                 <RefreshCcw size={18} />
               </div>
               <span className="text-xs text-center text-unionbank-gray">Send Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
                 <RefreshCcw size={18} className="transform rotate-180" />
               </div>
               <span className="text-xs text-center text-unionbank-gray">Receive Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
                 <DollarSign size={18} />
               </div>
               <span className="text-xs text-center text-unionbank-gray">Pay Bills</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
                 <Smartphone size={18} />
               </div>
               <span className="text-xs text-center text-unionbank-gray">Buy Load</span>

@@ -46,8 +46,8 @@ const LoginPage = () => {
         />
       </div>
       
-      <div className="w-20 h-10 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-xl font-semibold mb-4">
-        PR
+      <div className="w-16 h-16 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-xl font-semibold mb-4">
+        PI
       </div>
       
       <div className="text-gray-500 text-sm mb-6">{username}</div>
@@ -59,7 +59,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full h-12 text-base border-gray-300 focus:border-unionbank-orange rounded-full px-4"
+            className="w-full h-12 text-base border-unionbank-orange border rounded-full px-4"
           />
           <button 
             type="button"
