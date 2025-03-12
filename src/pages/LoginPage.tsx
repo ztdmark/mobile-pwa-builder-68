@@ -59,7 +59,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full h-12 text-base rounded-2xl px-4 border-none shadow-[0_0_0_1px_#e0e0e0] focus-visible:shadow-[0_0_0_1px_#F97316] hover:shadow-[0_0_0_1px_#F97316]"
+            className="w-full h-12 text-base rounded-md px-4 border-none shadow-[0_0_0_1px_#e0e0e0] focus-visible:shadow-[0_0_0_1px_#F97316] hover:shadow-[0_0_0_1px_#F97316]"
           />
           <button 
             type="button"
