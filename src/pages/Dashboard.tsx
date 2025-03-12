@@ -96,14 +96,14 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/paybills.png" alt="Pay Bills" className="w-full h-full object-contain" />
+                <img src="/paybills1.png" alt="Pay Bills" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Pay</span>
               <span className="text-xs text-center text-gray-600">Bills</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/buyload.png" alt="Buy Load" className="w-full h-full object-contain" />
+                <img src="/buyload2.png" alt="Buy Load" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Buy</span>
               <span className="text-xs text-center text-gray-600">Load</span>
