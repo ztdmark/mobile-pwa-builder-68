@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -14,9 +13,8 @@ import {
   PayBillsIcon,
   BuyLoadIcon,
   MoreIcon,
-  SendMoneyIcon,
-  ReceiveMoneyIcon
 } from "@/components/icons/NavigationIcons";
+import { SendMoneyIcon, ReceiveMoneyIcon } from "@/components/icons/NavigationIcons";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -88,29 +86,29 @@ const Dashboard = () => {
         <Card className="p-6 shadow-sm mb-16 rounded-xl">
           <div className="grid grid-cols-4 gap-4 mb-6">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
-                <SendMoneyIcon className="w-8 h-8" />
+              <div className="w-12 h-12 mb-1">
+                <img src="/sendmoney.png" alt="Send Money" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Send</span>
               <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
-                <ReceiveMoneyIcon className="w-8 h-8" />
+              <div className="w-12 h-12 mb-1">
+                <img src="/receivemoney.png" alt="Receive Money" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Receive</span>
               <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
-                <PayBillsIcon className="w-8 h-8" />
+              <div className="w-12 h-12 mb-1">
+                <img src="/paybills1.png" alt="Pay Bills" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Pay</span>
               <span className="text-xs text-center text-gray-600">Bills</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
-                <BuyLoadIcon className="w-8 h-8" />
+              <div className="w-12 h-12 mb-1">
+                <img src="/buyload2.png" alt="Buy Load" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Buy</span>
               <span className="text-xs text-center text-gray-600">Load</span>
