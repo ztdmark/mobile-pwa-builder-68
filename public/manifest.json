@@ -1,7 +1,7 @@
 
 {
-  "name": "",
-  "short_name": "",
+  "name": "UnionBank",
+  "short_name": "UB",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,12 +9,12 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/logo192.png",
+      "src": "/ub.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/logo512.png",
+      "src": "/ub.png",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -23,8 +23,8 @@ const LoadingPage = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
       <img 
         src="/ub.png" 
-        alt=""
-        className="h-16"
+        alt="UnionBank"
+        className="h-24 w-auto"
       />
     </div>
   );
