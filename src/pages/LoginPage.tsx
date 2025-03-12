@@ -59,7 +59,7 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="w-full h-12 text-base border-unionbank-orange border rounded-full px-4"
+            className="w-full h-12 text-base rounded-2xl px-4 border-none shadow-[0_0_0_1px_#e0e0e0] focus-visible:shadow-[0_0_0_1px_#F97316] hover:shadow-[0_0_0_1px_#F97316]"
           />
           <button 
             type="button"
@@ -83,21 +83,21 @@ const LoginPage = () => {
         </Button>
       </form>
       
-      <div className="mt-6 text-gray-500">
-        <a href="#" className="text-sm">Forgot my User ID or Password</a>
+      <div className="mt-6">
+        <a href="#" className="text-unionbank-orange text-sm">Forgot my User ID or Password</a>
       </div>
       
-      <div className="mt-8 text-gray-400 text-sm">
-        Scroll up for more options
-      </div>
-      
-      <div className="w-full max-w-md mt-6">
+      <div className="flex-1 flex flex-col justify-end w-full max-w-md">
+        <div className="text-gray-400 text-sm text-center mb-4">
+          Scroll up for more options
+        </div>
+        
         <Button 
           variant="outline"
           className="w-full h-12 border-gray-300 text-black justify-between items-center px-6 rounded-lg mb-4"
         >
           <span>Generate OTP</span>
-          <span className="text-unionbank-orange">›</span>
+          <span className="text-unionbank-orange font-bold text-xl">›</span>
         </Button>
         
         <Button 
@@ -105,7 +105,7 @@ const LoginPage = () => {
           className="w-full h-12 border-gray-300 text-black justify-between items-center px-6 rounded-lg"
         >
           <span>ATM & Branch Locator</span>
-          <span className="text-unionbank-orange">›</span>
+          <span className="text-unionbank-orange font-bold text-xl">›</span>
         </Button>
       </div>
     </div>
