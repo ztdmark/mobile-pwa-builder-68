@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
   ArrowRight, Mail, QrCode, 
-  RefreshCcw, DollarSign, Smartphone, 
   MoreHorizontal, ChevronRight, Megaphone,
   FileCheck, CircleDollarSign, CreditCard
 } from "lucide-react";
@@ -23,11 +22,11 @@ const Dashboard = () => {
   };
 
   const menuItems = [
-    { icon: <RefreshCcw size={20} className="transform rotate-90" />, label: "DASHBOARD" },
-    { icon: <RefreshCcw size={20} />, label: "SEND/RECEIVE" },
-    { icon: <DollarSign size={20} />, label: "PAY BILLS" },
-    { icon: <Smartphone size={20} />, label: "BUY LOAD" },
-    { icon: <MoreHorizontal size={20} />, label: "MORE" },
+    { icon: "/dashboard.png", label: "DASHBOARD" },
+    { icon: "/sendreceive.png", label: "SEND/RECEIVE" },
+    { icon: "/paybills.png", label: "PAY BILLS" },
+    { icon: "/buyload.png", label: "BUY LOAD" },
+    { icon: "/more.png", label: "MORE" },
   ];
 
   return (
@@ -66,7 +65,7 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative">
+        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-lg">
           <div className="flex justify-between items-center mb-1">
             <h3 className={`${isMobile ? 'text-sm' : 'text-base'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
@@ -148,8 +147,11 @@ const Dashboard = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2">
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
-            {item.icon}
-            <span className="text-[9px] mt-0.5">{item.label}</span>
+            <img 
+              src={item.icon} 
+              alt={item.label} 
+              className={`w-5 h-5 ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
+            />
           </div>
         ))}
       </div>
