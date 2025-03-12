@@ -38,7 +38,7 @@ const Dashboard = () => {
           <div className="w-10 h-10 rounded-lg bg-unionbank-orange flex items-center justify-center text-white text-lg font-bold">
             PC
           </div>
-          <div className="text-lg font-medium text-gray-700">Dashbo...</div>
+          <div className="text-lg font-medium text-gray-700">Dashboard</div>
         </div>
         <div className="flex items-center gap-4">
           <button className="flex flex-col items-center text-gray-500 text-xs">

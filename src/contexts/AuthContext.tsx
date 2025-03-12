@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // For demo purposes, accept any username/password
       const mockUser = {
         name: "PRINCE IVANN BODO COMISO",
-        accountNumber: "****0499",
+        accountNumber: "0499",
         balance: 981412.50,
       };
       
