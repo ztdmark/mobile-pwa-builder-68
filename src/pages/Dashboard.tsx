@@ -1,15 +1,22 @@
 
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
   ArrowRight, Mail, QrCode, 
-  MoreHorizontal, ChevronRight, Megaphone,
-  FileCheck, CircleDollarSign, CreditCard
+  ChevronRight
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  DashboardIcon,
+  SendReceiveIcon,
+  PayBillsIcon,
+  BuyLoadIcon,
+  MoreIcon,
+  SendMoneyIcon,
+  ReceiveMoneyIcon
+} from "@/components/icons/NavigationIcons";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -22,11 +29,11 @@ const Dashboard = () => {
   };
 
   const menuItems = [
-    { icon: "/dashboard.png", label: "DASHBOARD" },
-    { icon: "/sendreceive.png", label: "SEND/RECEIVE" },
-    { icon: "/paybills.png", label: "PAY BILLS" },
-    { icon: "/buyload.png", label: "BUY LOAD" },
-    { icon: "/more.png", label: "MORE" },
+    { icon: DashboardIcon, label: "DASHBOARD" },
+    { icon: SendReceiveIcon, label: "SEND/RECEIVE" },
+    { icon: PayBillsIcon, label: "PAY BILLS" },
+    { icon: BuyLoadIcon, label: "BUY LOAD" },
+    { icon: MoreIcon, label: "MORE" },
   ];
 
   return (
@@ -37,7 +44,7 @@ const Dashboard = () => {
           <div className="w-10 h-10 rounded-lg bg-unionbank-orange flex items-center justify-center text-white text-lg font-bold">
             PC
           </div>
-          <div className="text-lg font-medium text-gray-700">Dashbo...</div>
+          <div className="text-lg font-medium text-gray-700">Dashboard</div>
         </div>
         <div className="flex items-center gap-4">
           <button className="flex flex-col items-center text-gray-500 text-xs">
@@ -65,7 +72,7 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-lg">
+        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-lg shadow-orange-400/30">
           <div className="flex justify-between items-center mb-1">
             <h3 className={`${isMobile ? 'text-sm' : 'text-base'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
@@ -73,7 +80,7 @@ const Dashboard = () => {
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-l font-bold">PHP 981,412.50</div>
+            <div className="text-base font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
@@ -81,29 +88,29 @@ const Dashboard = () => {
         <Card className="p-6 shadow-sm mb-16 rounded-xl">
           <div className="grid grid-cols-4 gap-4 mb-6">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/sendmoney.png" alt="Send Money" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
+                <SendMoneyIcon className="w-8 h-8" />
               </div>
               <span className="text-xs text-center text-gray-600">Send</span>
               <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/receivemoney.png" alt="Receive Money" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
+                <ReceiveMoneyIcon className="w-8 h-8" />
               </div>
               <span className="text-xs text-center text-gray-600">Receive</span>
               <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/paybills1.png" alt="Pay Bills" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
+                <PayBillsIcon className="w-8 h-8" />
               </div>
               <span className="text-xs text-center text-gray-600">Pay</span>
               <span className="text-xs text-center text-gray-600">Bills</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/buyload2.png" alt="Buy Load" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 mb-1 flex items-center justify-center text-unionbank-orange">
+                <BuyLoadIcon className="w-8 h-8" />
               </div>
               <span className="text-xs text-center text-gray-600">Buy</span>
               <span className="text-xs text-center text-gray-600">Load</span>
@@ -144,14 +151,11 @@ const Dashboard = () => {
       </div>
 
       {/* Bottom Navigation Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3">
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
-            <img 
-              src={item.icon} 
-              alt={item.label} 
-              className={`w-12.5 h-12.5 ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
-            />
+            <item.icon className="w-8 h-8 mb-1" />
+            <span className="text-xs">{item.label}</span>
           </div>
         ))}
       </div>

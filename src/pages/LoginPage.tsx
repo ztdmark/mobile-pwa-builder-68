@@ -37,8 +37,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white px-6 py-10">
-      <div className="w-full max-w-md flex justify-center mb-10">
+    <div className="flex flex-col items-center min-h-screen bg-white px-4 py-6 sm:px-6 sm:py-10">
+      <div className="w-full max-w-md flex justify-center mb-8">
         <img 
           src="/ub.png" 
           alt="Union Bank" 
@@ -87,7 +87,7 @@ const LoginPage = () => {
         <a href="#" className="text-unionbank-orange text-sm">Forgot my User ID or Password</a>
       </div>
       
-      <div className="flex-1 flex flex-col justify-end w-full max-w-md">
+      <div className="flex-1 flex flex-col justify-end w-full max-w-md mt-8">
         <div className="text-gray-400 text-sm text-center mb-4">
           Scroll up for more options
         </div>

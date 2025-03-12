@@ -96,6 +96,11 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+  }
+
   body {
     @apply bg-background text-foreground;
     margin: 0;
@@ -103,6 +108,10 @@
     -webkit-tap-highlight-color: transparent;
     position: relative;
     overscroll-behavior-y: none;
+    min-height: 100vh;
+    /* Fix iOS height issues */
+    min-height: -webkit-fill-available;
+    font-size: 16px;
   }
   
   /* Add safe area padding for iOS devices */
@@ -113,6 +122,24 @@
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
     }
+
+    /* Adjust bottom nav for safe areas */
+    .fixed.bottom-0 {
+      bottom: 0;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* Fix for iOS 100vh issue */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+    color: inherit;
   }
 }
 
@@ -133,4 +160,18 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Prevent zooming on input focus on iOS */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px;
+  }
 }
