@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -14,9 +15,14 @@ import {
   BuyLoadIcon,
   MoreIcon,
 } from "@/components/icons/NavigationIcons";
-import { SendMoneyIcon, ReceiveMoneyIcon } from "@/components/icons/NavigationIcons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { DashboardSkeleton } from "@/components/DashboardSkeleton";
+
+// Preload images helper function
+const preloadImage = (src: string) => {
+  const img = new Image();
+  img.src = src;
+};
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -25,8 +31,26 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [startY, setStartY] = useState(0);
   const [pullDistance, setPullDistance] = useState(0);
+  const imagesPreloaded = useRef(false);
 
   useEffect(() => {
+    // Preload images on component mount if not already done
+    if (!imagesPreloaded.current) {
+      const imagesToPreload = [
+        '/sendmoney.png',
+        '/receivemoney.png',
+        '/paybills1.png',
+        '/buyload2.png',
+        '/visitbranch.png',
+        '/depositcheck.png',
+        '/buysellusd.png',
+        '/activatecard.png'
+      ];
+      
+      imagesToPreload.forEach(preloadImage);
+      imagesPreloaded.current = true;
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);

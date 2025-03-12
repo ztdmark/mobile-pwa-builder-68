@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'union-bank-cache-v4';
+const CACHE_NAME = 'union-bank-cache-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -7,8 +7,6 @@ const urlsToCache = [
   '/ub.png',
   '/logo192.png',
   '/logo512.png',
-  '/lovable-uploads/9c04d07b-cc81-4eb3-bdb0-7dfc68f894ed.png',
-  '/lovable-uploads/284bf278-c27b-4e8b-b3a4-65bad06b1369.png',
   '/sendmoney.png',
   '/receivemoney.png',
   '/paybills1.png',
@@ -16,20 +14,16 @@ const urlsToCache = [
   '/visitbranch.png',
   '/depositcheck.png',
   '/buysellusd.png',
-  '/activatecard.png',
-  '/dashboard.png',
-  '/sendreceive.png',
-  '/paybills.png',
-  '/buyload.png',
-  '/more.png'
+  '/activatecard.png'
 ];
 
 // Install event - cache all static resources
 self.addEventListener('install', event => {
+  console.log('Service Worker installing.');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
+        console.log('Opened cache, caching URLs');
         return cache.addAll(urlsToCache);
       })
   );
@@ -39,6 +33,7 @@ self.addEventListener('install', event => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
+  console.log('Service Worker activating.');
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -56,52 +51,97 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event - serve from cache, fetch from network and update cache
+// Fetch event - cache-first strategy for images, network-first for other resources
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
+  const requestUrl = new URL(event.request.url);
+  
+  // Check if the request is for an image
+  const isImage = event.request.destination === 'image' || 
+                  requestUrl.pathname.match(/\.(png|jpg|jpeg|svg|gif)$/i);
+                 
+  if (isImage) {
+    // For images, use cache-first strategy
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          // Return cached image
+          return cachedResponse;
         }
-
-        // Clone the request because it's a one-time use stream
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          response => {
+        
+        // If not in cache, fetch from network and cache
+        return fetch(event.request)
+          .then(response => {
             // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
+            if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
-
-            // Clone the response because it's a one-time use stream
+            
+            // Clone the response
             const responseToCache = response.clone();
-
+            
+            // Cache the fetched image
             caches.open(CACHE_NAME)
               .then(cache => {
-                // Add the request/response pair to the cache
+                cache.put(event.request, responseToCache);
+                console.log('Image cached:', requestUrl.pathname);
+              });
+              
+            return response;
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+            // You could return a placeholder image here
+          });
+      })
+    );
+  } else {
+    // For non-image resources, use network-first strategy
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          // If we have a valid response, clone it and cache it
+          if (response && response.status === 200 && response.type === 'basic') {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME)
+              .then(cache => {
                 cache.put(event.request, responseToCache);
               });
-
-            return response;
           }
-        );
-      })
-  );
-});
-
-// Background sync for offline functionality
-self.addEventListener('sync', event => {
-  if (event.tag === 'sync-transactions') {
-    event.waitUntil(syncTransactions());
+          return response;
+        })
+        .catch(() => {
+          // If network fails, try to return from cache
+          return caches.match(event.request);
+        })
+    );
   }
 });
 
-// Function to sync transactions
-function syncTransactions() {
-  // Implementation for syncing transactions when back online
-  console.log('Syncing transactions');
-  return Promise.resolve();
-}
+// Prefetch important images when idle
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'PREFETCH_IMAGES') {
+    const imagesToPrefetch = [
+      '/sendmoney.png',
+      '/receivemoney.png',
+      '/paybills1.png',
+      '/buyload2.png',
+      '/visitbranch.png',
+      '/depositcheck.png',
+      '/buysellusd.png',
+      '/activatecard.png'
+    ];
+    
+    // Prefetch images when browser is idle
+    if ('requestIdleCallback' in self) {
+      self.requestIdleCallback(() => {
+        caches.open(CACHE_NAME).then(cache => {
+          imagesToPrefetch.forEach(imageUrl => {
+            cache.add(new Request(imageUrl, { mode: 'no-cors' }))
+              .then(() => console.log('Prefetched:', imageUrl))
+              .catch(err => console.error('Failed to prefetch:', imageUrl, err));
+          });
+        });
+      });
+    }
+  }
+});
