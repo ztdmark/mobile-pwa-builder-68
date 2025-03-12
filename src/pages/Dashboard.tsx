@@ -3,10 +3,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { 
   ArrowRight, Mail, QrCode, 
   RefreshCcw, DollarSign, Smartphone, 
-  MoreHorizontal
+  MoreHorizontal, ChevronRight, Megaphone,
+  FileCheck, CircleDollarSign, CreditCard
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -20,29 +22,37 @@ const Dashboard = () => {
     navigate("/login");
   };
 
+  const menuItems = [
+    { icon: <RefreshCcw size={20} className="transform rotate-90" />, label: "DASHBOARD" },
+    { icon: <RefreshCcw size={20} />, label: "SEND/RECEIVE" },
+    { icon: <DollarSign size={20} />, label: "PAY BILLS" },
+    { icon: <Smartphone size={20} />, label: "BUY LOAD" },
+    { icon: <MoreHorizontal size={20} />, label: "MORE" },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white p-4 border-b border-gray-200 flex items-center justify-between">
-        <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-full bg-unionbank-orange flex items-center justify-center text-white text-xl font-bold">
+      <header className="bg-white p-3 border-b border-gray-200 flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <div className="w-10 h-10 rounded-lg bg-unionbank-orange flex items-center justify-center text-white text-lg font-bold">
             PC
           </div>
-          <div className="text-xl font-semibold">Dashboard</div>
+          <div className="text-lg font-medium text-gray-700">Dashbo...</div>
         </div>
         <div className="flex items-center gap-4">
-          <button className="flex flex-col items-center text-unionbank-gray">
-            <QrCode size={20} />
-            <span className="text-xs mt-0.5">Scan</span>
+          <button className="flex flex-col items-center text-gray-500 text-xs">
+            <QrCode size={18} />
+            <span className="mt-0.5">Scan</span>
           </button>
-          <button className="flex flex-col items-center text-unionbank-gray relative">
+          <button className="flex flex-col items-center text-gray-500 text-xs relative">
             <div className="absolute -top-1 -right-1 w-2 h-2 bg-unionbank-orange rounded-full"></div>
-            <Mail size={20} />
-            <span className="text-xs mt-0.5">Mailbox</span>
+            <Mail size={18} />
+            <span className="mt-0.5">Mailbox</span>
           </button>
-          <button onClick={handleLogout} className="flex flex-col items-center text-unionbank-gray">
-            <ArrowRight size={20} />
-            <span className="text-xs mt-0.5">Log out</span>
+          <button onClick={handleLogout} className="flex flex-col items-center text-gray-500 text-xs">
+            <ArrowRight size={18} />
+            <span className="mt-0.5">Log out</span>
           </button>
         </div>
       </header>
@@ -50,18 +60,18 @@ const Dashboard = () => {
       {/* Account Section */}
       <div className="p-4">
         <div className="flex justify-between items-center mb-3">
-          <h2 className="text-xl font-bold">Accounts</h2>
-          <Button variant="outline" className="text-sm h-8 rounded-full border-unionbank-gray/30 px-3 py-1">
+          <h2 className="text-2xl font-bold text-gray-800">Accounts</h2>
+          <Button variant="outline" className="text-sm h-8 rounded-full border-gray-300 px-4 py-1 font-medium">
             ADD / MANAGE
           </Button>
         </div>
 
-        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4">
+        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative">
           <div className="flex justify-between items-center mb-1">
-            <h3 className="text-lg font-bold">{user?.name}</h3>
-            <ArrowRight size={20} />
+            <h3 className="text-lg font-bold uppercase">{user?.name}</h3>
+            <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
           </div>
-          <div className="text-sm mb-4">Classic Savings ePaycard {user?.accountNumber}</div>
+          <div className="text-sm mb-6">Classic Savings ePaycard ****{user?.accountNumber.slice(-4)}</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
             <div className="text-2xl font-bold">PHP {user?.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
@@ -69,58 +79,79 @@ const Dashboard = () => {
         </div>
 
         {/* Banking Services Grid */}
-        <div className="bg-white rounded-xl p-4 shadow-sm mb-16">
-          <div className="grid grid-cols-4 gap-2">
+        <Card className="p-6 shadow-sm mb-16 rounded-xl">
+          <div className="grid grid-cols-4 gap-4 mb-6">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
-                <RefreshCcw size={18} />
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Send Money" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xs text-center text-unionbank-gray">Send Money</span>
+              <span className="text-xs text-center text-gray-600">Send</span>
+              <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
-                <RefreshCcw size={18} className="transform rotate-180" />
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Receive Money" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xs text-center text-unionbank-gray">Receive Money</span>
+              <span className="text-xs text-center text-gray-600">Receive</span>
+              <span className="text-xs text-center text-gray-600">Money</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
-                <DollarSign size={18} />
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Pay Bills" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xs text-center text-unionbank-gray">Pay Bills</span>
+              <span className="text-xs text-center text-gray-600">Pay</span>
+              <span className="text-xs text-center text-gray-600">Bills</span>
             </div>
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-unionbank-gray mb-1">
-                <Smartphone size={18} />
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Buy Load" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xs text-center text-unionbank-gray">Buy Load</span>
+              <span className="text-xs text-center text-gray-600">Buy</span>
+              <span className="text-xs text-center text-gray-600">Load</span>
             </div>
           </div>
-        </div>
+          
+          <div className="grid grid-cols-4 gap-4">
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Promos" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-xs text-center text-gray-600">Promos</span>
+              <span className="text-xs text-center text-gray-600">&</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Deposit Check" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-xs text-center text-gray-600">Deposit</span>
+              <span className="text-xs text-center text-gray-600">Check</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Buy/Sell USD" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-xs text-center text-gray-600">Buy/Sell</span>
+              <span className="text-xs text-center text-gray-600">USD</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-12 h-12 mb-1">
+                <img src="/lovable-uploads/37732813-a164-4b7d-bcf0-737565be0090.png" alt="Activate Card" className="w-full h-full object-contain" />
+              </div>
+              <span className="text-xs text-center text-gray-600">Activate</span>
+              <span className="text-xs text-center text-gray-600">Card</span>
+            </div>
+          </div>
+        </Card>
       </div>
 
-      {/* Bottom Navigation Bar (Mobile) */}
+      {/* Bottom Navigation Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-2">
-        <div className="flex flex-col items-center text-unionbank-orange">
-          <RefreshCcw size={18} className="transform rotate-90" />
-          <span className="text-xs mt-0.5">DASHBOARD</span>
-        </div>
-        <div className="flex flex-col items-center text-unionbank-gray">
-          <RefreshCcw size={18} />
-          <span className="text-xs mt-0.5">SEND/RECEIVE</span>
-        </div>
-        <div className="flex flex-col items-center text-unionbank-gray">
-          <DollarSign size={18} />
-          <span className="text-xs mt-0.5">PAY BILLS</span>
-        </div>
-        <div className="flex flex-col items-center text-unionbank-gray">
-          <Smartphone size={18} />
-          <span className="text-xs mt-0.5">BUY LOAD</span>
-        </div>
-        <div className="flex flex-col items-center text-unionbank-gray">
-          <MoreHorizontal size={18} />
-          <span className="text-xs mt-0.5">MORE</span>
-        </div>
+        {menuItems.map((item, index) => (
+          <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
+            {item.icon}
+            <span className="text-xs mt-0.5">{item.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   );
