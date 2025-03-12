@@ -150,7 +150,7 @@ const Dashboard = () => {
             <img 
               src={item.icon} 
               alt={item.label} 
-              className={`w-5 h-5 ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
+              className={`w-12.5 h-12.5 ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
             />
           </div>
         ))}
