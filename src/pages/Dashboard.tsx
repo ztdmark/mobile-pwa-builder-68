@@ -15,11 +15,51 @@ import {
   MoreIcon,
 } from "@/components/icons/NavigationIcons";
 import { SendMoneyIcon, ReceiveMoneyIcon } from "@/components/icons/NavigationIcons";
+import { useState, useEffect } from "react";
+import { DashboardSkeleton } from "@/components/DashboardSkeleton";
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const [isLoading, setIsLoading] = useState(true);
+  const [startY, setStartY] = useState(0);
+  const [pullDistance, setPullDistance] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (window.scrollY === 0) {
+      setStartY(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (startY > 0) {
+      const currentY = e.touches[0].clientY;
+      const distance = currentY - startY;
+      if (distance > 0 && window.scrollY === 0) {
+        setPullDistance(distance);
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (pullDistance > 150) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
+    setStartY(0);
+    setPullDistance(0);
+  };
 
   const handleLogout = () => {
     logout();
@@ -34,10 +74,19 @@ const Dashboard = () => {
     { icon: MoreIcon, label: "MORE" },
   ];
 
+  if (isLoading) {
+    return <DashboardSkeleton />;
+  }
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white p-3 border-b border-gray-200 flex items-center justify-between">
+    <div 
+      className="flex flex-col min-h-screen bg-gray-50"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Header - removed border-b */}
+      <header className="bg-white p-3 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-lg bg-unionbank-orange flex items-center justify-center text-white text-lg font-bold">
             PC
@@ -70,7 +119,7 @@ const Dashboard = () => {
           </Button>
         </div>
 
-        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-lg shadow-orange-400/30">
+        <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-[0_8px_30px_rgb(249,115,22,0.2)]">
           <div className="flex justify-between items-center mb-1">
             <h3 className={`${isMobile ? 'text-sm' : 'text-base'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
@@ -78,7 +127,7 @@ const Dashboard = () => {
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-base font-bold">PHP 981,412.50</div>
+            <div className="text-[0.9em] font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
