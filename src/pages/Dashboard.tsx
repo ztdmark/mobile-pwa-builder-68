@@ -68,13 +68,13 @@ const Dashboard = () => {
 
         <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative">
           <div className="flex justify-between items-center mb-1">
-            <h3 className="text-xl font-bold uppercase">{user?.name}</h3>
+            <h3 className="text-xl font-bold uppercase">PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
           </div>
-          <div className="text-sm mb-10">Classic Savings ePaycard ****{user?.accountNumber.slice(-4)}</div>
+          <div className="text-sm mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-2xl font-bold">PHP {user?.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            <div className="text-2xl font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
