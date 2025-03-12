@@ -73,7 +73,7 @@ const Dashboard = () => {
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-2xl font-bold">PHP 981,412.50</div>
+            <div className="text-xl font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
@@ -96,14 +96,14 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/paybills1.png" alt="Pay Bills" className="w-full h-full object-contain" />
+                <img src="/paybills.png" alt="Pay Bills" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Pay</span>
               <span className="text-xs text-center text-gray-600">Bills</span>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-12 h-12 mb-1 flex items-center justify-center">
-                <img src="/buyload2.png" alt="Buy Load" className="w-full h-full object-contain" />
+                <img src="/buyload.png" alt="Buy Load" className="w-full h-full object-contain" />
               </div>
               <span className="text-xs text-center text-gray-600">Buy</span>
               <span className="text-xs text-center text-gray-600">Load</span>
@@ -150,7 +150,7 @@ const Dashboard = () => {
             <img 
               src={item.icon} 
               alt={item.label} 
-              className={`w-12.5 h-12.5 ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
+              className={`w-[31.25px] h-[31.25px] ${index === 0 ? 'opacity-100' : 'opacity-70'}`} 
             />
           </div>
         ))}
