@@ -96,7 +96,7 @@ export const DashboardSkeleton = () => {
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
             <item.icon className="w-8 h-8 mb-1" />
-            <span className="text-xs">{item.label}</span>
+            <span className="text-[0.65rem]">{item.label}</span>
           </div>
         ))}
       </div>

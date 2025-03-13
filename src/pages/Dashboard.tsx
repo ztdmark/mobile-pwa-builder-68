@@ -145,13 +145,13 @@ const Dashboard = () => {
 
         <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-[0_8px_30px_rgb(249,115,22,0.2)]">
           <div className="flex justify-between items-center mb-1">
-            <h3 className={`${isMobile ? 'text-sm' : 'text-base'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
+            <h3 className={`${isMobile ? 'text-[1.05em]' : 'text-[1.05em]'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
           </div>
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-[0.9em] font-bold">PHP 981,412.50</div>
+            <div className="text-[0.945em] font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
@@ -226,7 +226,7 @@ const Dashboard = () => {
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
             <item.icon className="w-8 h-8 mb-1" />
-            <span className="text-xs">{item.label}</span>
+            <span className="text-[0.65rem]">{item.label}</span>
           </div>
         ))}
       </div>
