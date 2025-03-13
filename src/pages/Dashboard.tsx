@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
   ArrowRight, Mail, QrCode, 
-  ChevronRight
+  ChevronRight, RefreshCw
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -31,6 +31,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [startY, setStartY] = useState(0);
   const [pullDistance, setPullDistance] = useState(0);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const imagesPreloaded = useRef(false);
 
   useEffect(() => {
@@ -76,10 +77,14 @@ const Dashboard = () => {
 
   const handleTouchEnd = () => {
     if (pullDistance > 150) {
-      setIsLoading(true);
+      setIsRefreshing(true);
       setTimeout(() => {
-        setIsLoading(false);
-      }, 1500);
+        setIsRefreshing(false);
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+      }, 1000);
     }
     setStartY(0);
     setPullDistance(0);
@@ -109,6 +114,23 @@ const Dashboard = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Refresh indicator */}
+      {(pullDistance > 0 || isRefreshing) && (
+        <div 
+          className="fixed top-0 left-0 right-0 flex justify-center items-center py-3 z-50 bg-white/50 backdrop-blur-sm"
+          style={{ 
+            height: isRefreshing ? '60px' : Math.min(pullDistance * 0.5, 60), 
+            opacity: isRefreshing ? 1 : Math.min(pullDistance / 150, 1) 
+          }}
+        >
+          <RefreshCw 
+            size={24} 
+            className={`text-unionbank-orange ${isRefreshing ? 'animate-spin' : 'transform'}`} 
+            style={{ transform: isRefreshing ? 'rotate(0deg)' : `rotate(${Math.min(pullDistance, 150) * 1.8}deg)` }}
+          />
+        </div>
+      )}
+
       {/* Header - removed border-b */}
       <header className="bg-white p-3 flex items-center justify-between">
         <div className="flex items-center space-x-2">
@@ -145,13 +167,13 @@ const Dashboard = () => {
 
         <div className="bg-unionbank-orange rounded-xl p-4 text-white mb-4 relative shadow-[0_8px_30px_rgb(249,115,22,0.2)]">
           <div className="flex justify-between items-center mb-1">
-            <h3 className={`${isMobile ? 'text-[1.05em]' : 'text-[1.05em]'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
+            <h3 className={`${isMobile ? 'text-[1.1025em]' : 'text-[1.1025em]'} font-bold uppercase text-white/90`}>PRINCE IVANN BODO COMISO</h3>
             <ChevronRight size={24} className="bg-white/20 rounded-full p-1" />
           </div>
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-[0.945em] font-bold">PHP 981,412.50</div>
+            <div className="text-[0.99225em] font-bold">PHP 981,412.50</div>
           </div>
         </div>
 
@@ -226,7 +248,7 @@ const Dashboard = () => {
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
             <item.icon className="w-8 h-8 mb-1" />
-            <span className="text-[0.65rem]">{item.label}</span>
+            <span className="text-[0.6rem]">{item.label}</span>
           </div>
         ))}
       </div>

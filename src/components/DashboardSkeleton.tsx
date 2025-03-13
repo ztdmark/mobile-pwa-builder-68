@@ -1,5 +1,6 @@
 
 import { Skeleton } from "@/components/ui/skeleton"
+import { Button } from "@/components/ui/button"
 import { 
   DashboardIcon,
   SendReceiveIcon,
@@ -49,11 +50,13 @@ export const DashboardSkeleton = () => {
         </div>
       </header>
 
-      {/* Account Section Skeleton */}
+      {/* Account Section Skeleton with real "Accounts" title and button */}
       <div className="p-4">
         <div className="flex justify-between items-center mb-3">
-          <Skeleton className="h-8 w-32" />
-          <Skeleton className="h-8 w-28 rounded-full" />
+          <h2 className="text-2xl font-bold text-gray-800">Accounts</h2>
+          <Button variant="outline" className="text-sm h-8 rounded-full border-gray-300 px-4 py-1 font-medium">
+            ADD / MANAGE
+          </Button>
         </div>
 
         <div className="bg-[#F97316] rounded-xl p-4 mb-4 relative shadow-[0_8px_30px_rgb(249,115,22,0.2)]">
@@ -96,7 +99,7 @@ export const DashboardSkeleton = () => {
         {menuItems.map((item, index) => (
           <div key={index} className={`flex flex-col items-center ${index === 0 ? 'text-unionbank-orange' : 'text-gray-500'}`}>
             <item.icon className="w-8 h-8 mb-1" />
-            <span className="text-[0.65rem]">{item.label}</span>
+            <span className="text-[0.6rem]">{item.label}</span>
           </div>
         ))}
       </div>
