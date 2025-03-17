@@ -173,7 +173,7 @@ const Dashboard = () => {
           <div className="text-xs mb-10">Classic Savings ePaycard ****0499</div>
           <div className="text-right">
             <div className="text-xs">Available Balance</div>
-            <div className="text-[0.99225em] font-bold">PHP 981,412.50</div>
+            <div className="text-[0.99225em] font-bold">PHP 741,412.50</div>
           </div>
         </div>
 
